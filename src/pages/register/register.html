@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title style="text-align: center; line-height: 44px;">注册</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label fixed>账号</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>密码</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>确认密码</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>姓名</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>性别</ion-label>
+    <ion-select [(ngModel)] = "gender">
+      <ion-option value="f">男</ion-option>
+      <ion-option value="m">女</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <div padding>
+    <button ion-button block color="primary" (click)= " presentConfirm() " style="font-size: 24px;" >注册</button>
+    <p style="font-size: 16px;">已经有账号了吗？<b (click)= " toLogin() " >返回登录</b></p>
+  </div>
+</ion-content>
+

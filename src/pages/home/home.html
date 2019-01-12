@@ -1,17 +1,71 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="primary">
+  <ion-searchbar style="opacity:0.8;"></ion-searchbar>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content class="grid-basic-page">
+
+  <ion-slides pager padding>
+    <ion-slide>
+      <img src="assets/imgs/IMG_01.jpg" />
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/imgs/IMG_02.jpg" />
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/imgs/IMG_05.jpg" />
+    </ion-slide>
+  </ion-slides>
+
+  <p padding>热销商品</p>
+  <ion-icon name="flame" ></ion-icon>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-img src="assets/imgs/IMG_06.jpg" ></ion-img>
+      </ion-col>
+
+      <ion-col>
+        <ion-img src="assets/imgs/IMG_02.jpg" ></ion-img>
+      </ion-col>
+
+      <ion-col>
+        <ion-img src="assets/imgs/IMG_02.jpg" ></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-img src="assets/imgs/IMG_02.jpg" ></ion-img>
+      </ion-col>
+
+      <ion-col>
+        <ion-img src="assets/imgs/IMG_02.jpg" ></ion-img>
+      </ion-col>
+
+      <ion-col>
+        <ion-img src="assets/imgs/IMG_02.jpg" ></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-img src="assets/imgs/IMG_02.jpg" ></ion-img>
+      </ion-col>
+
+      <ion-col>
+        <ion-img src="assets/imgs/IMG_02.jpg" ></ion-img>
+      </ion-col>
+
+      <ion-col>
+        <ion-img src="assets/imgs/IMG_02.jpg" ></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+

@@ -4,6 +4,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { RegisterPage } from "../pages/register/register";
+import { LoginPage } from "../pages/login/login";
+import { AboutPage } from '../pages/about/about';
+import { GenrePage } from '../pages/genre/genre';
+import { HomePage } from '../pages/home/home';
+import { SearchPage } from '../pages/search/search';
+import { DetailPage } from '../pages/detail/detail';
+import { EditPage } from '../pages/edit/edit';
+
 
 @Component({
   templateUrl: 'app.html'

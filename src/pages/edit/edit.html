@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-icon name="arrow-back" style="padding-left: 10px; color: #fffb09; line-height: 44px; float: left;">&nbsp;返回</ion-icon>
+    <ion-title style="text-align: center; line-height: 44px;">修改信息</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <a ion-item (click)="openModal({charNum: 0})">
+      头像
+    </a>
+    <a ion-item (click)="openModal({charNum: 0})">
+      账号
+    </a>
+    <a ion-item (click)="openModal({charNum: 0})">
+      密码
+    </a>
+    <a ion-item (click)="openModal({charNum: 0})">
+      姓名
+    </a>
+    <a ion-item (click)="openModal({charNum: 1})">
+      性别
+    </a>
+    <a ion-item (click)="openModal({charNum: 2})">
+      联系方式
+    </a>
+    <a ion-item (click)="openModal({charNum: 2})">
+      地址
+    </a>
+    <ion-list></ion-list>
+  </ion-list>
+  <button ion-button block color="primary">确定修改</button>
+  <button ion-button block color="light">退出登陆</button>
+
+</ion-content>
+

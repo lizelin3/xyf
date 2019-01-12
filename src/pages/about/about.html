@@ -1,11 +1,30 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
+<ion-header >
+  <ion-navbar color="primary">
+    <ion-title style="text-align: center; line-height: 44px;">关于我</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="cards-bg social-cards">
 
+  <!--个人信息-->
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/IMG_02.jpg" (click)="toEditPage()">
+      </ion-avatar>
+      <h2>用户名</h2>
+    </ion-item>
+  </ion-card>
+
+  <!--我的订单-->
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/IMG_03.jpg">
+      </ion-avatar>
+      <h2>我的订单</h2>
+    </ion-item>
+  </ion-card>
 </ion-content>
+
+
