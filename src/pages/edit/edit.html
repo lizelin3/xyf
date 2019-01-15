@@ -1,18 +1,23 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-icon name="arrow-back" style="padding-left: 10px; color: #fffb09; line-height: 44px; float: left;">&nbsp;返回</ion-icon>
-    <ion-title style="text-align: center; line-height: 44px;">修改信息</ion-title>
+    <ion-icon name="arrow-back" style="padding-left: 10px;color: #fffb09;line-height: 44px;float: left;"
+              (click)="toabout()">&nbsp;返回</ion-icon>
+    <ion-title>修改信息</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <a ion-item (click)="openModal({charNum: 0})">
+    <a class="head" ion-item (click)="openModal({charNum: 0})">
       头像
+      <img class="img-head" src="assets/imgs/IMG_02.jpg">
     </a>
-    <a ion-item (click)="openModal({charNum: 0})">
-      账号
-    </a>
+
+      <ion-item>
+        <h2>账号</h2>
+        <p class="account">zhanghao</p>
+      </ion-item>
+
     <a ion-item (click)="openModal({charNum: 0})">
       密码
     </a>
@@ -30,8 +35,9 @@
     </a>
     <ion-list></ion-list>
   </ion-list>
-  <button ion-button block color="primary">确定修改</button>
-  <button ion-button block color="light">退出登陆</button>
-
+  <div padding>
+  <button ion-button block color="primary" (click)= " Edit() ">确定修改</button>
+  <button ion-button block color="light" style="margin-top: 10px;">退出登录</button>
+  </div>
 </ion-content>
 

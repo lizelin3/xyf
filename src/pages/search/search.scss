@@ -40,3 +40,10 @@ page-search {
   }
 
 }
+
+.search-text{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: rgba(19,19,14,0.38);
+}

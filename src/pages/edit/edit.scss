@@ -2,3 +2,29 @@ page-edit {
 
 }
 
+.head{
+  display: inline-block;
+  line-height: 50px;
+}
+
+h2{
+  display: block;
+  float: left;
+}
+
+.account{
+  display: block;
+  float: right;
+}
+
+.img-head{
+  max-width: 50px;
+  max-height: 50px;
+  height: 80px;
+  width: 80px;
+  float: right;
+  border-radius: 50%;
+  border:solid 1px rgb(255, 159, 4);
+}
+
+
