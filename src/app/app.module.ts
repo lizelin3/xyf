@@ -16,6 +16,7 @@ import { SearchPage } from "../pages/search/search";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+//import { UrlUtil } from "../pages/util/UrlUtil";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+//    urlutil
   ]
 })
 export class AppModule {}

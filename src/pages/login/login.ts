@@ -4,6 +4,7 @@ import { TabsPage } from "../tabs/tabs";
 import { RegisterPage } from "../register/register";
 import { HttpClient } from "@angular/common/http";
 import { ToastController } from "ionic-angular";
+//import { UrlUtil } from "../util/UrlUtil";
 
 @Component({
   selector: 'page-login',
@@ -15,7 +16,12 @@ export class LoginPage {
   username : string = "";
   password : string = "";
 
-  constructor ( public navCtrl: NavController, private http:HttpClient, public toastCtrl: ToastController) {
+  constructor ( public navCtrl: NavController,
+                private http:HttpClient,
+                public toastCtrl: ToastController,
+                //private storage: Storage,
+                //private urlUtil: UrlUtil
+  ) {
 
   }
 
@@ -27,7 +33,7 @@ export class LoginPage {
     let password = this.password.trim();
     if (username === "") {
       const toast = this.toastCtrl.create({
-        message: '请输入账号',
+        message: '请输入用户名',
         duration: 3000,
         position: 'top'
       });
@@ -48,8 +54,6 @@ export class LoginPage {
     this.http.get('http://xyf.zbeboy.xyz/mobile/login', {
       params:{'username':username,'password':password}
     })
-
-
       .subscribe(data => {
         if(data['state']){
           this.navCtrl.setRoot(TabsPage);
@@ -64,11 +68,29 @@ export class LoginPage {
 
       });
 
+
+    /*this.http.get(this.urlUtil.login,{
+      params:{'username': username, 'password': password}
+    })
+      .subscribe(data => {
+        if(data['state']){
+          this.navCtrl.setRoot(TabsPage);
+          this.addUser();
+        }else{
+          const toast = this.toastCtrl.create({
+            message: data['msg'],
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present();
+        }
+      });*/
   }
 
   toRegister()
   {
     this.navCtrl.setRoot(RegisterPage);
   }
+
 }
 
