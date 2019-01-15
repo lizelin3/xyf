@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from '@ionic/storage';
+import { AES256 } from '@ionic-native/aes-256';
 
 import { AboutPage } from '../pages/about/about';
 import { GenrePage } from '../pages/genre/genre';
@@ -18,6 +19,7 @@ import { SearchPage } from "../pages/search/search";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UrlUtil } from "../pages/util/UrlUtil";
+import { AESUtil } from "../pages/util/AESUtil";
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { UrlUtil } from "../pages/util/UrlUtil";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UrlUtil
+    UrlUtil,
+    AESUtil,
+    AES256
   ]
 })
 export class AppModule {}
