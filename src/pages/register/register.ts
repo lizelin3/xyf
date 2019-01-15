@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, ToastController, ModalController, Platform, NavParams} from 'ionic-angular';
-import { LoginPage } from "../login/login";
+import { NavController, ToastController } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
+
+import { UrlUtil } from "../util/UrlUtil";
+
+import { LoginPage } from "../login/login";
 
 @Component({
   selector: 'page-register',
@@ -11,71 +14,29 @@ import { HttpClient } from "@angular/common/http";
 /*点击注册按钮*/
 export class RegisterPage {
 
-  username : string = "";
-  password : string = "";
-  confirmPassword : string = "";
-  realName : string = "";
+  realName: string = "";
+  sex: string = "男";
+  username: string = "";
+  password: string = "";
+  confirmPassword: string = "";
 
-  constructor(private alertCtrl: AlertController,
-              public navCtrl: NavController,
-              public toastCtrl: ToastController,
-              private http:HttpClient,
-              ) {
+
+  constructor(
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    private http: HttpClient,
+    private urlUtil: UrlUtil
+  ) {
 
   }
 
-  gender: string = "f";
+  toRegister() {
 
-  goRegister() {
-
-    //console.log(this.username);
-    //console.log(this.password);
-    //console.log(this.confirmPassword);
-    //console.log(this.realName);
-    //console.log(this.gender);
-
+    let realName = this.realName.trim();
     let username = this.username.trim();
     let password = this.password.trim();
     let confirmPassword = this.confirmPassword.trim();
-    let realName = this.realName.trim();
-    let gender = this.gender.trim();
 
-    if (username === "") {
-      const toast = this.toastCtrl.create({
-        message: '请输入用户名',
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-      return;
-    }
-    if (password === "") {
-      const toast = this.toastCtrl.create({
-        message: '请输入密码',
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-      return;
-    }
-    if (confirmPassword === "") {
-      const toast = this.toastCtrl.create({
-        message: '请确认密码',
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-      return;
-    }
-    if (password != confirmPassword) {
-      const toast = this.toastCtrl.create({
-        message: '两次输入密码不匹配',
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-      return;
-    }
     if (realName === "") {
       const toast = this.toastCtrl.create({
         message: '请输入姓名',
@@ -86,18 +47,69 @@ export class RegisterPage {
       return;
     }
 
-    //请求
-    this.http.get('http://xyf.zbeboy.xyz/mobile/register', {
-      params:{'username':username,'password':password, 'confirmPassword':confirmPassword, 'realName':realName, 'genre':gender }
-    }).subscribe(data => {
-      //console.log(data);
-        if(data['state']) {
-          const confirm = this.alertCtrl.create({
-            title: '注册成功！'
-          });
-          confirm.present();
-        }
+    if (username === "") {
+      const toast = this.toastCtrl.create({
+        message: '请输入账号',
+        duration: 3000,
+        position: 'top'
       });
+      toast.present();
+      return;
+    }
+
+    if (password === "") {
+      const toast = this.toastCtrl.create({
+        message: '请输入密码',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      return;
+    }
+
+    if (confirmPassword === "") {
+      const toast = this.toastCtrl.create({
+        message: '请确认密码',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      const toast = this.toastCtrl.create({
+        message: '输入密码不一致',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      return;
+    }
+
+
+    //请求
+    this.http.get(this.urlUtil.REGISTER, {
+      params: {
+        'username': username,
+        'password': password,
+        'confirmPassword': confirmPassword,
+        'realName': realName,
+        'sex': this.sex
+      }
+    }).subscribe(data => {
+      const toast = this.toastCtrl.create({
+        message: data['msg'],
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      
+      if (data['state']) {
+        this.toLogin();
+      }
+
+    });
 
 
   }
