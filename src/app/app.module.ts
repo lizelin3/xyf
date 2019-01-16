@@ -19,7 +19,6 @@ import { SearchPage } from "../pages/search/search";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UrlUtil } from "../pages/util/UrlUtil";
-import { AESUtil } from "../pages/util/AESUtil";
 
 @NgModule({
   declarations: [
@@ -58,8 +57,7 @@ import { AESUtil } from "../pages/util/AESUtil";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UrlUtil,
-    AESUtil,
-    AES256
+	AES256
   ]
 })
 export class AppModule {}
