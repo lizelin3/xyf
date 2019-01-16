@@ -7,7 +7,20 @@
 <ion-content padding>
 
   <ion-item>
-    <ion-label fixed>用户名</ion-label>
+    <ion-label fixed>姓名</ion-label>
+    <ion-input type="text" [(ngModel)]="realName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>性别</ion-label>
+    <ion-select okText="确定" cancelText="取消" [(ngModel)] = "sex">
+      <ion-option value="男">男</ion-option>
+      <ion-option value="女">女</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>账号</ion-label>
     <ion-input type="text" [(ngModel)]="username"></ion-input>
   </ion-item>
 
@@ -21,21 +34,8 @@
     <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label fixed>姓名</ion-label>
-    <ion-input type="text" [(ngModel)]="realName"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label fixed>性别</ion-label>
-    <ion-select [(ngModel)] = "gender">
-      <ion-option value="f">男</ion-option>
-      <ion-option value="m">女</ion-option>
-    </ion-select>
-  </ion-item>
-
   <div padding>
-    <button ion-button block color="primary" (click)= " goRegister() ">注册</button>
+    <button ion-button block color="primary" (click)= " toRegister() ">注册</button>
     <p>已有账号？<b (click)= " toLogin() " >登录</b></p>
   </div>
 
