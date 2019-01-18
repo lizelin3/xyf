@@ -20,6 +20,16 @@ page-home {
     ion-img{
       width: 99%;
       height: 95px;
+
+    }
+    .hot{
+      font-size: 20px;
+    }
+    ion-col{
+      padding: 0 5px 20px 0;
+    }
+    ion-row{
+      padding-left: 5px;
     }
     ion-icon{
       color: #ff5533;
@@ -34,8 +44,4 @@ page-home {
   }
 }
 
-ion-searchbar{
-  opacity:0.8;
-  border-radius: 30px;
-}
 

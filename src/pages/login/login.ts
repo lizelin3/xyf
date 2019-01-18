@@ -17,8 +17,8 @@ import { RegisterPage } from "../register/register";
 
 export class LoginPage {
 
-  username : string = "";
-  password : string = "";
+  username : string = "govern";
+  password : string = "MUt6N8ha";
 
   constructor ( public navCtrl: NavController,
                 private http:HttpClient,

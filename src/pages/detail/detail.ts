@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController , AlertController, NavController, NavParams } from 'ionic-angular';
+import { ModalController , AlertController, NavController } from 'ionic-angular';
 import { GenrePage } from "../genre/genre"
 
 @Component({

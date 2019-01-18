@@ -15,23 +15,23 @@
 
       <ion-item>
         <h2>账号</h2>
-        <p class="account">zhanghao</p>
+        <p class="account">{{username}}</p>
       </ion-item>
 
     <a ion-item (click)="openModal({charNum: 0})">
       密码
     </a>
     <a ion-item (click)="openModal({charNum: 0})">
-      姓名
+      姓名 <span style="float: right; color:rgba(19,19,14,0.38)">{{realName}}</span>
     </a>
     <a ion-item (click)="openModal({charNum: 1})">
-      性别
+      性别 <span style="float: right; color:rgba(19,19,14,0.38)">{{sex}}</span>
     </a>
     <a ion-item (click)="openModal({charNum: 2})">
-      联系方式
+      联系方式 <span style="float: right; color:rgba(19,19,14,0.38)">{{contact}}</span>
     </a>
     <a ion-item (click)="openModal({charNum: 2})">
-      地址
+      地址 <span style="float: right; color:rgba(19,19,14,0.38)">{{address}}</span>
     </a>
     <ion-list></ion-list>
   </ion-list>

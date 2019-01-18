@@ -8,7 +8,5 @@ import { NavController } from 'ionic-angular';
 export class GenrePage {
 
   constructor(public navCtrl: NavController) {
-
   }
-
 }
