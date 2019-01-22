@@ -17,14 +17,14 @@ import { RegisterPage } from "../register/register";
 
 export class LoginPage {
 
-  username : string = "govern";
-  password : string = "MUt6N8ha";
+  username: string = "govern";
+  password: string = "MUt6N8ha";
 
-  constructor ( public navCtrl: NavController,
-                private http:HttpClient,
-                public toastCtrl: ToastController,
-                private storage: Storage,
-                private urlUtil: UrlUtil
+  constructor(public navCtrl: NavController,
+    private http: HttpClient,
+    public toastCtrl: ToastController,
+    private storage: Storage,
+    private urlUtil: UrlUtil
   ) {
 
   }
@@ -53,13 +53,14 @@ export class LoginPage {
 
     //请求
     this.http.get(this.urlUtil.LOGIN, {
-      params:{'username':username,'password':password}
+      params: { 'username': username, 'password': password }
     })
       .subscribe(data => {
-        if(data['state']){
-          this.addUsers();
+        if (data['state']) {
+          this.storage.set('username', this.username);
+          this.storage.set('accessToken', data['access_token']);
           this.navCtrl.setRoot(TabsPage);
-        }else{
+        } else {
           const toast = this.toastCtrl.create({
             message: data['msg'],
             duration: 3000,
@@ -71,17 +72,11 @@ export class LoginPage {
       });
   }
 
-  toRegister()
-  {
+  toRegister() {
     this.navCtrl.setRoot(RegisterPage);
   }
 
-  addUsers(){
-    this.storage.set('username', this.username);
-    this.storage.set('password', this.password);
-  }
-
-  getUsers(){
+  getUsers() {
     this.storage.get('username').then((val) => {
       console.log('Your username is', val);
     });

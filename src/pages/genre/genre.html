@@ -14,84 +14,17 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-          <a ion-item (click)="openModal({charNum: 0})">
-            茶叶
-          </a>
-          <a ion-item (click)="openModal({charNum: 1})">
-            茶具
-          </a>
-          <a ion-item (click)="openModal({charNum: 2})">
-            瓷器
+          <a *ngFor = "let classify of classifies" ion-item (click)="selectGoods(classify.classifyId)">
+            {{classify.classifyName}}
           </a>
       </ion-col>
 
       <ion-col col-8>
         <ion-list >
-          <ion-card>
-            <img class="img-genre" src="assets/imgs/IMG_02.jpg"/>
-            <h1 margin-top>红茶</h1>
-            <h4>
-              描述一点点描述一点点描述一点点描述一点点描述一点点描述一点点
-              描述一点点描述一点点描述一点点描述一点点描述一点点描述一点点</h4>
-            <ion-col>
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='star'></ion-icon>
-                收藏
-              </button>
-            </ion-col>
-            <ion-col style="padding-left: 35px;">
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='cart'></ion-icon>
-                购买
-              </button>
-            </ion-col>
-          </ion-card>
-
-          <ion-card>
-            <img class="img-genre" src="assets/imgs/IMG_03.jpg"/>
-            <h1 margin-top>红茶</h1>
-            <h4>描述一点点描述一点点描述一点点描述一点点描述一点点描述一点点
-              描述一点点描述一点点描述一点点描述一点点描述一点点描述一点点</h4>
-            <ion-col>
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='star'></ion-icon>
-                收藏
-              </button>
-            </ion-col>
-            <ion-col style="padding-left: 35px;">
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='cart'></ion-icon>
-                购买
-              </button>
-            </ion-col>
-          </ion-card>
-
-          <ion-card>
-            <img class="img-genre" src="assets/imgs/IMG_04.jpg"/>
-            <h1 margin-top>红茶</h1>
-            <h4>
-              描述一点点描述一点点描述一点点描述一点点描述一点点描述一点点
-              描述一点点描述一点点描述一点点描述一点点描述一点点描述一点点</h4>
-            <ion-col>
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='star'></ion-icon>
-                收藏
-              </button>
-            </ion-col>
-            <ion-col style="padding-left: 35px;">
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='cart'></ion-icon>
-                购买
-              </button>
-            </ion-col>
-          </ion-card>
-
-          <ion-card>
-            <img class="img-genre" src="assets/imgs/IMG_05.jpg"/>
-            <h1 margin-top>红茶</h1>
-            <h4>
-              描述一点点描述一点点描述一点点描述一点点描述一点点描述一点点
-              描述一点点描述一点点描述一点点描述一点点描述一点点描述一点点</h4>
+          <ion-card *ngFor = "let goods of goodses">
+            <img class="img-genre" src="{{goods.picUrl}}"/>
+            <h1 margin-top>{{goods.goodsName}}</h1>
+            <h4>{{goods.goodsBrief}}</h4>
             <ion-col>
               <button ion-button clear small color="danger" icon-start>
                 <ion-icon name='star'></ion-icon>
