@@ -36,7 +36,7 @@ import { UrlUtil } from "../pages/util/UrlUtil";
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, { backButtonText: '返回' }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -55,9 +55,9 @@ import { UrlUtil } from "../pages/util/UrlUtil";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     UrlUtil,
-	AES256
+    AES256
   ]
 })
-export class AppModule {}
+export class AppModule { }

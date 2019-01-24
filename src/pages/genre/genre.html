@@ -22,7 +22,7 @@
       <ion-col col-8>
         <ion-list >
           <ion-card *ngFor = "let goods of goodses">
-            <img class="img-genre" src="{{goods.picUrl}}"/>
+            <img class="img-genre" src="{{goods.picUrl}}" (click)="toDetail(goods.goodsId)"/>
             <h1 margin-top>{{goods.goodsName}}</h1>
             <h4>{{goods.goodsBrief}}</h4>
             <ion-col>

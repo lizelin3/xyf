@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {EditPage} from "../edit/edit";
+import { EditPage } from "../edit/edit";
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -8,18 +8,18 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'about.html'
 })
 export class AboutPage {
-  username : string;
+  username: string;
   constructor(public navCtrl: NavController,
-              private storage: Storage
-              ) {
+    private storage: Storage
+  ) {
     this.getUser();
   }
 
   toEditPage() {
-    this.navCtrl.setRoot( EditPage );
+    this.navCtrl.push(EditPage);
   }
 
-  getUser(){
+  getUser() {
     this.storage.get('username').then((val) => {
       this.username = val;
     });

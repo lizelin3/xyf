@@ -5,7 +5,11 @@ export class UrlUtil {
   BANNERS = this.WEB_URL + "/mobile/backstage/goods/banner/data";
   GOODS_STICK = this.WEB_URL + "/mobile/backstage/goods/datum/stick";
   GOODS = this.WEB_URL + "/mobile/backstage/goods/datum/data";
+  GOODS_ONE = this.WEB_URL + "/mobile/backstage/goods/datum/one";
   CLASSIFIIES = this.WEB_URL + "/mobile/backstage/goods/classify/data";
   USER = this.WEB_URL + "/mobile/user";
+  USER_REAL_NAME = this.WEB_URL + "/mobile/user/edit/real_name";
+  USER_CONTACT = this.WEB_URL + "/mobile/user/edit/contact";
+  USER_ADDRESS = this.WEB_URL + "/mobile/user/edit/address";
 }
 

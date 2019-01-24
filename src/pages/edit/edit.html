@@ -1,7 +1,5 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-icon name="arrow-back" style="padding-left: 10px;color: #fffb09;line-height: 44px;float: left;"
-              (click)="toabout()">&nbsp;返回</ion-icon>
     <ion-title>修改信息</ion-title>
   </ion-navbar>
 </ion-header>
@@ -21,22 +19,21 @@
     <a ion-item (click)="openModal({charNum: 0})">
       密码
     </a>
-    <a ion-item (click)="openModal({charNum: 0})">
+    <a ion-item (click)="editRealName()">
       姓名 <span style="float: right; color:rgba(19,19,14,0.38)">{{realName}}</span>
     </a>
-    <a ion-item (click)="openModal({charNum: 1})">
+    <a ion-item (click)="editSex()">
       性别 <span style="float: right; color:rgba(19,19,14,0.38)">{{sex}}</span>
     </a>
-    <a ion-item (click)="openModal({charNum: 2})">
+    <a ion-item (click)="editContact()">
       联系方式 <span style="float: right; color:rgba(19,19,14,0.38)">{{contact}}</span>
     </a>
-    <a ion-item (click)="openModal({charNum: 2})">
+    <a ion-item (click)="editAddress()">
       地址 <span style="float: right; color:rgba(19,19,14,0.38)">{{address}}</span>
     </a>
     <ion-list></ion-list>
   </ion-list>
   <div padding>
-  <button ion-button block color="primary" (click)= " Edit() ">确定修改</button>
   <button ion-button block color="light" style="margin-top: 10px;">退出登录</button>
   </div>
 </ion-content>
