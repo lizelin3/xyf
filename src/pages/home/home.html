@@ -18,53 +18,9 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-img src="assets/imgs/IMG_07.jpg" ></ion-img>
-        <p class="hot">茶具茶杯</p>
-      </ion-col>
-
-      <ion-col>
-        <ion-img src="assets/imgs/IMG_07.jpg" ></ion-img>
-        <p class="hot">茶具茶杯</p>
-      </ion-col>
-
-      <ion-col>
-        <ion-img src="assets/imgs/IMG_07.jpg" ></ion-img>
-        <p class="hot">茶具茶杯</p>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-img src="assets/imgs/IMG_07.jpg" ></ion-img>
-        <p class="hot">茶具茶杯</p>
-      </ion-col>
-
-      <ion-col>
-        <ion-img src="assets/imgs/IMG_07.jpg" ></ion-img>
-        <p class="hot">茶具茶杯</p>
-      </ion-col>
-
-      <ion-col>
-        <ion-img src="assets/imgs/IMG_07.jpg" ></ion-img>
-        <p class="hot">茶具茶杯</p>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-img src="assets/imgs/IMG_07.jpg" ></ion-img>
-        <p class="hot">茶具茶杯</p>
-      </ion-col>
-
-      <ion-col>
-        <ion-img src="assets/imgs/IMG_07.jpg" ></ion-img>
-        <p class="hot">茶具茶杯</p>
-      </ion-col>
-
-      <ion-col>
-        <ion-img src="assets/imgs/IMG_07.jpg" ></ion-img>
-        <p class="hot">茶具茶杯</p>
+      <ion-col col-4 *ngFor = "let stick of goodsSticks">
+        <ion-img src="{{stick.picUrl}}" ></ion-img>
+        <p class="hot">{{stick.goodsName}}</p>
       </ion-col>
     </ion-row>
   </ion-grid>
