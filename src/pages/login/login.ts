@@ -29,7 +29,7 @@ export class LoginPage {
 
   }
 
-  toTabs() {
+  toLogin() {
     let username = this.username.trim();
     let password = this.password.trim();
     if (username === "") {
@@ -74,6 +74,10 @@ export class LoginPage {
 
   toRegister() {
     this.navCtrl.setRoot(RegisterPage);
+  }
+
+  toTabs(){
+    this.navCtrl.setRoot(TabsPage);
   }
 
   getUsers() {

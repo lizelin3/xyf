@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { UrlUtil } from "../util/UrlUtil";
-import { GenrePage } from "../genre/genre"
+import { GenrePage } from "../genre/genre";
 
 @Component({
   templateUrl: 'detail.html'

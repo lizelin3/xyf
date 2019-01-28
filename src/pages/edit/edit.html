@@ -16,7 +16,7 @@
         <p class="account">{{username}}</p>
       </ion-item>
 
-    <a ion-item (click)="openModal({charNum: 0})">
+    <a ion-item (click)="editPassword()">
       密码
     </a>
     <a ion-item (click)="editRealName()">
@@ -34,7 +34,7 @@
     <ion-list></ion-list>
   </ion-list>
   <div padding>
-  <button ion-button block color="light" style="margin-top: 10px;">退出登录</button>
+  <button ion-button block color="light" style="margin-top: 10px;" (click)="logout()">退出登录</button>
   </div>
 </ion-content>
 

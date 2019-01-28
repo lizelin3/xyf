@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, AlertController, NavController } from 'ionic-angular';
+import { App, ModalController, AlertController, NavController, ViewController  } from 'ionic-angular';
 import { LoginPage } from "../login/login";
 import { AboutPage } from "../about/about";
 import { ToastController } from "ionic-angular";
@@ -24,34 +24,28 @@ export class EditPage {
     private navCtrl: NavController,
     private http: HttpClient,
     public toastCtrl: ToastController,
+    public viewCtrl: ViewController,
     private storage: Storage,
+    public appCtrl: App,
     private urlUtil: UrlUtil
   ) {
     this.getUser();
   }
 
-  Edit() {
-    let alert = this.alertCtrl.create({
-      title: '修改成功!',
-      buttons: [
-        {
-          text: '重新登录',
-          handler: () => {
-            this.navCtrl.setRoot(LoginPage);
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-
   toabout() {
-    this.navCtrl.setRoot(AboutPage)
+    this.navCtrl.setRoot(AboutPage);
   }
 
   getUser() {
     this.storage.get('username').then((username) => {
       this.storage.get('accessToken').then((accessToken) => {
+
+        if(username == null || accessToken == null){
+          this.viewCtrl.dismiss();
+          this.appCtrl.getRootNav().setRoot(LoginPage);
+          return;
+        }
+
         //请求
         this.http.get(this.urlUtil.USER, {
           params: { 'username': username, 'accessToken': accessToken }
@@ -77,6 +71,78 @@ export class EditPage {
       });
     });
 
+  }
+
+  editPassword() {
+    const prompt = this.alertCtrl.create({
+      title: '您的姓名',
+      inputs: [
+        {
+          name: 'password',
+          placeholder: '密码',
+          type:'password'
+        },
+        {
+          name: 'okPassword',
+          placeholder: '确认密码',
+          type:'password'
+        },
+      ],
+      buttons: [
+        {
+          text: '取消'
+        },
+        {
+          text: '保存',
+          handler: data => {
+            let password = data['password'];
+            let okPassword = data['okPassword'];
+            if(password.trim() === ''){
+              const toast = this.toastCtrl.create({
+                message: '密码不能为空',
+                duration: 3000,
+                position: 'top'
+              });
+              toast.present();
+              return;
+            }
+
+            if(password.trim() !== okPassword.trim()){
+              const toast = this.toastCtrl.create({
+                message: '请确认密码',
+                duration: 3000,
+                position: 'top'
+              });
+              toast.present();
+              return;
+            }
+
+            //请求
+            this.http.get(this.urlUtil.USER_PASSWORD, {
+              params: { 'username': this.username, 'accessToken': this.accessToken, 'password': password}
+            })
+              .subscribe(data => {
+                if (data['state']) {
+                  this.username = data["user"]["username"];
+                  this.realName = data["user"]["realName"];
+                  this.sex = data["user"]["sex"];
+                  this.contact = data["user"]["contact"];
+                  this.address = data["user"]["address"];
+                } else {
+                  const toast = this.toastCtrl.create({
+                    message: data['msg'],
+                    duration: 3000,
+                    position: 'top'
+                  });
+                  toast.present();
+                }
+
+              });
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   editRealName() {
@@ -122,6 +188,55 @@ export class EditPage {
       ]
     });
     prompt.present();
+  }
+
+  editSex() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('您的性别');
+
+    alert.addInput({
+      type: 'radio',
+      label: '男',
+      value: '男',
+      checked: this.sex == "男"
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: '女',
+      value: '女',
+      checked: this.sex == "女"
+    });
+
+    alert.addButton('取消');
+    alert.addButton({
+      text: '确定',
+      handler: data => {
+        //请求
+        this.http.get(this.urlUtil.USER_SEX, {
+          params: { 'username': this.username, 'accessToken': this.accessToken, 'sex': data }
+        })
+          .subscribe(data => {
+            if (data['state']) {
+              this.username = data["user"]["username"];
+              this.realName = data["user"]["realName"];
+              this.sex = data["user"]["sex"];
+              this.contact = data["user"]["contact"];
+              this.address = data["user"]["address"];
+            } else {
+              const toast = this.toastCtrl.create({
+                message: data['msg'],
+                duration: 3000,
+                position: 'top'
+              });
+              toast.present();
+            }
+
+          });
+      }
+    });
+
+    alert.present()
   }
 
   editContact() {
@@ -204,6 +319,13 @@ export class EditPage {
       ]
     });
     prompt.present();
+  }
+
+  logout(){
+    this.storage.remove('username');
+    this.storage.remove('accessToken');
+    this.viewCtrl.dismiss();
+    this.appCtrl.getRootNav().setRoot(LoginPage);
   }
 }
 

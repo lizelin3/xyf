@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="primary">
-  <ion-searchbar style="border-radius:30px; opacity: .9"></ion-searchbar>
+  <ion-searchbar style="border-radius:30px; opacity: .9" placeholder="搜索" [(ngModel)]="search" type="search" [ngModelOptions]="{standalone: true}" (keyup)="onSearchKeyUp($event)"></ion-searchbar>
   </ion-navbar>
 </ion-header>
 
