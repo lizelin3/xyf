@@ -8,9 +8,9 @@
 
   <!--个人信息-->
   <ion-card>
-    <ion-item>
+    <ion-item (click)="toEditPage()">
       <ion-avatar item-start>
-        <img src="assets/imgs/IMG_02.jpg" (click)="toEditPage()">
+        <img src="{{photo}}">
       </ion-avatar>
       <h2>{{username}}</h2>
     </ion-item>

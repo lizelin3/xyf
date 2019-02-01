@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { App, ModalController, AlertController, NavController, ViewController  } from 'ionic-angular';
+import { App, ModalController, AlertController, NavController, ViewController } from 'ionic-angular';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { FileTransfer } from '@ionic-native/file-transfer';
 import { LoginPage } from "../login/login";
 import { AboutPage } from "../about/about";
 import { ToastController } from "ionic-angular";
@@ -18,6 +20,7 @@ export class EditPage {
   sex: string;
   contact: string;
   address: string;
+  photo: string;
 
   constructor(public modalCtrl: ModalController,
     private alertCtrl: AlertController,
@@ -27,7 +30,9 @@ export class EditPage {
     public viewCtrl: ViewController,
     private storage: Storage,
     public appCtrl: App,
-    private urlUtil: UrlUtil
+    private urlUtil: UrlUtil,
+    private imagePicker: ImagePicker,
+    private transfer: FileTransfer
   ) {
     this.getUser();
   }
@@ -40,7 +45,7 @@ export class EditPage {
     this.storage.get('username').then((username) => {
       this.storage.get('accessToken').then((accessToken) => {
 
-        if(username == null || accessToken == null){
+        if (username == null || accessToken == null) {
           this.viewCtrl.dismiss();
           this.appCtrl.getRootNav().setRoot(LoginPage);
           return;
@@ -58,6 +63,7 @@ export class EditPage {
               this.sex = data["user"]["sex"];
               this.contact = data["user"]["contact"];
               this.address = data["user"]["address"];
+              this.photo = this.urlUtil.WEB_URL + data["user"]["photo"];
             } else {
               const toast = this.toastCtrl.create({
                 message: data['msg'],
@@ -73,6 +79,55 @@ export class EditPage {
 
   }
 
+  editPhoto() {
+    this.imagePicker.getPictures({
+      maximumImagesCount: 1,
+      width: 800,
+      height: 800,
+      quality: 80
+    }).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+        this.transfer.create().upload(results[i], this.urlUtil.USER_PHOTO, {
+          headers: {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+          },
+          params: {
+            'username': this.username,
+            'accessToken': this.accessToken
+          }
+        })
+          .then((data) => {
+            // success
+            if (data['state']) {
+              this.photo = this.urlUtil.WEB_URL + data["user"]["photo"];
+            } else {
+              const toast = this.toastCtrl.create({
+                message: data['msg'],
+                duration: 3000,
+                position: 'top'
+              });
+              toast.present();
+            }
+          }, (err) => {
+            // error
+            const toast = this.toastCtrl.create({
+              message: "上传失败 " + err.http_status + " " + err.exception,
+              duration: 3000,
+              position: 'top'
+            });
+            toast.present();
+          });
+      }
+    }, (err) => {
+      const toast = this.toastCtrl.create({
+        message: '选择图片产生错误',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+    });
+  }
+
   editPassword() {
     const prompt = this.alertCtrl.create({
       title: '您的姓名',
@@ -80,12 +135,12 @@ export class EditPage {
         {
           name: 'password',
           placeholder: '密码',
-          type:'password'
+          type: 'password'
         },
         {
           name: 'okPassword',
           placeholder: '确认密码',
-          type:'password'
+          type: 'password'
         },
       ],
       buttons: [
@@ -97,7 +152,7 @@ export class EditPage {
           handler: data => {
             let password = data['password'];
             let okPassword = data['okPassword'];
-            if(password.trim() === ''){
+            if (password.trim() === '') {
               const toast = this.toastCtrl.create({
                 message: '密码不能为空',
                 duration: 3000,
@@ -107,7 +162,7 @@ export class EditPage {
               return;
             }
 
-            if(password.trim() !== okPassword.trim()){
+            if (password.trim() !== okPassword.trim()) {
               const toast = this.toastCtrl.create({
                 message: '请确认密码',
                 duration: 3000,
@@ -119,23 +174,15 @@ export class EditPage {
 
             //请求
             this.http.get(this.urlUtil.USER_PASSWORD, {
-              params: { 'username': this.username, 'accessToken': this.accessToken, 'password': password}
+              params: { 'username': this.username, 'accessToken': this.accessToken, 'password': password }
             })
               .subscribe(data => {
-                if (data['state']) {
-                  this.username = data["user"]["username"];
-                  this.realName = data["user"]["realName"];
-                  this.sex = data["user"]["sex"];
-                  this.contact = data["user"]["contact"];
-                  this.address = data["user"]["address"];
-                } else {
-                  const toast = this.toastCtrl.create({
-                    message: data['msg'],
-                    duration: 3000,
-                    position: 'top'
-                  });
-                  toast.present();
-                }
+                const toast = this.toastCtrl.create({
+                  message: data['msg'],
+                  duration: 3000,
+                  position: 'top'
+                });
+                toast.present();
 
               });
           }
@@ -168,11 +215,7 @@ export class EditPage {
             })
               .subscribe(data => {
                 if (data['state']) {
-                  this.username = data["user"]["username"];
                   this.realName = data["user"]["realName"];
-                  this.sex = data["user"]["sex"];
-                  this.contact = data["user"]["contact"];
-                  this.address = data["user"]["address"];
                 } else {
                   const toast = this.toastCtrl.create({
                     message: data['msg'],
@@ -218,11 +261,7 @@ export class EditPage {
         })
           .subscribe(data => {
             if (data['state']) {
-              this.username = data["user"]["username"];
-              this.realName = data["user"]["realName"];
               this.sex = data["user"]["sex"];
-              this.contact = data["user"]["contact"];
-              this.address = data["user"]["address"];
             } else {
               const toast = this.toastCtrl.create({
                 message: data['msg'],
@@ -321,7 +360,7 @@ export class EditPage {
     prompt.present();
   }
 
-  logout(){
+  logout() {
     this.storage.remove('username');
     this.storage.remove('accessToken');
     this.viewCtrl.dismiss();
