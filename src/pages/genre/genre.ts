@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,ToastController } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
-import { ToastController } from "ionic-angular";
-
 import { UrlUtil } from "../util/UrlUtil";
+import { DetailPage } from '../detail/detail';
+import { SearchPage } from '../search/search';
 
 @Component({
   selector: 'page-genre',
@@ -66,5 +66,19 @@ export class GenrePage {
 
   selectGoods(classifyId: string) {
     this.getGoods(classifyId);
+  }
+
+  toDetail(goodsId: string) {
+    this.navCtrl.push(DetailPage, {
+      goodsId: goodsId
+    });
+  }
+
+  onSearchKeyUp(event: any) {
+    if ("Enter" == event.key) {
+      this.navCtrl.push(SearchPage, {
+        'content': event.target.value
+      });
+    }
   }
 }

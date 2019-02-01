@@ -5,6 +5,8 @@ import { MyApp } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from '@ionic/storage';
 import { AES256 } from '@ionic-native/aes-256';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 import { AboutPage } from '../pages/about/about';
 import { GenrePage } from '../pages/genre/genre';
@@ -36,7 +38,7 @@ import { UrlUtil } from "../pages/util/UrlUtil";
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, { backButtonText: '返回' }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -55,9 +57,11 @@ import { UrlUtil } from "../pages/util/UrlUtil";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     UrlUtil,
-	AES256
+    AES256,
+    ImagePicker,
+    FileTransfer
   ]
 })
-export class AppModule {}
+export class AppModule { }

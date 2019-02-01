@@ -1,11 +1,6 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-searchbar style="border-radius:30px; opacity: .5"
-    [ngModel] = "myInput"
-    [showCancelButton]="shouldShowCancel"
-    (ionInput)="onInput($event)"
-    (ionCancel)="onCancel($event)">
-    </ion-searchbar>
+  <ion-searchbar style="border-radius:30px; opacity: .9" placeholder="搜索" [(ngModel)]="search" type="search" [ngModelOptions]="{standalone: true}" (keyup)="onSearchKeyUp($event)"></ion-searchbar>
   </ion-navbar>
 </ion-header>
 
@@ -22,7 +17,7 @@
       <ion-col col-8>
         <ion-list >
           <ion-card *ngFor = "let goods of goodses">
-            <img class="img-genre" src="{{goods.picUrl}}"/>
+            <img class="img-genre" src="{{goods.picUrl}}" (click)="toDetail(goods.goodsId)"/>
             <h1 margin-top>{{goods.goodsName}}</h1>
             <h4>{{goods.goodsBrief}}</h4>
             <ion-col>
